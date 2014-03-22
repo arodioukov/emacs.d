@@ -10,10 +10,9 @@
 
 (when window-system (set-exec-path-from-shell-PATH))
 
-
 ;; look & feel
 (require 'smooth-scrolling)
-(setq mouse-wheel-scroll-amount '(1 ((shift) . 1) ((control) . nil)))
+(setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
 ;; please stfu
@@ -21,21 +20,23 @@
 (setq ring-bell-function 'ignore)
 
 (set-face-attribute 'default nil :family "Inconsolata" :height 160)
-(setq initial-frame-alist '((top . 0) (left . 0) (width . 160) (height . 50)))
+(setq initial-frame-alist '((top . 0) (left . 0) (width . 200) (height . 58)))
 
 (load-theme 'monokai t)
-
+;(load-theme 'solarized-dark t)
+;; make the fringe stand out from the background
+;(setq solarized-distinct-fringe-background t)
+;; make the modeline high contrast
+;(setq solarized-high-contrast-mode-line t)
 
 ;; tabs are 2 spaces
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-
 ;; python
 (add-hook 'python-mode-hook
           (function (lambda ()
                       (setq tab-width 4))))
-
 
 ;; clojure
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
@@ -64,5 +65,18 @@
 (eval-after-load "cider"
   '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
 
+(eval-after-load "cider"
+  '(define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
+
 ;; linum
-(global-linum-mode 1)
+;(global-linum-mode 1)
+(setq linum-eager nil)
+
+;; clj-refactor
+(require 'clj-refactor)
+(add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
+(cljr-add-keybindings-with-prefix "C-c C-m")
+
+;; powerline
+(require 'powerline)
+(powerline-default-theme)
