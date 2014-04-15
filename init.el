@@ -33,11 +33,12 @@
                       monokai-theme
                       python-mode
                       clj-refactor
-                      powerline))
+                      powerline
+                      org
+                      coffee-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
 (load "~/.emacs.d/user.el")
-(put 'downcase-region 'disabled nil)
