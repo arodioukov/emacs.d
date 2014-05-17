@@ -28,13 +28,13 @@
 (setq initial-scratch-message nil)
 (setq ring-bell-function 'ignore)
 
-(set-face-attribute 'default nil :family "Menlo" :height 130)
-(setq initial-frame-alist '((top . 0) (left . 0) (width . 200) (height . 58)))
+(set-face-attribute 'default nil :family "Menlo" :height 140)
+(setq initial-frame-alist '((top . 3) (left . 3) (width . 220) (height . 64)))
 
-;(require 'color-theme-sanityinc-tomorrow)
-;(load-theme 'sanityinc-tomorrow-night t)
+(require 'color-theme-sanityinc-tomorrow)
+(load-theme 'sanityinc-tomorrow-night t)
 
-(load-theme 'monokai t)
+;(load-theme 'monokai t)
 ;(load-theme 'solarized-dark t)
 ;; make the fringe stand out from the background
 ;(setq solarized-distinct-fringe-background t)
