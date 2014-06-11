@@ -24,17 +24,19 @@
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
 
+(setq-default fill-column 80)
+
 ;; please stfu
 (setq initial-scratch-message nil)
 (setq ring-bell-function 'ignore)
 
-(set-face-attribute 'default nil :family "Menlo" :height 140)
-(setq initial-frame-alist '((top . 3) (left . 3) (width . 220) (height . 64)))
+(set-face-attribute 'default nil :family "Inconsolata" :height 160)
+;(setq initial-frame-alist '((top . 3) (left . 3) (width . 200) (height . 61)))
 
-(require 'color-theme-sanityinc-tomorrow)
-(load-theme 'sanityinc-tomorrow-night t)
+;(require 'color-theme-sanityinc-tomorrow)
+;(load-theme 'sanityinc-tomorrow-night t)
 
-;(load-theme 'monokai t)
+(load-theme 'monokai t)
 ;(load-theme 'solarized-dark t)
 ;; make the fringe stand out from the background
 ;(setq solarized-distinct-fringe-background t)
@@ -50,9 +52,14 @@
           (function (lambda ()
                       (setq tab-width 4)
                       ())))
+(add-hook 'python-mode-hook 'auto-complete-mode)
+(add-hook 'python-mode-hook 'jedi:ac-setup)
 
 ;; clojure
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
+(add-hook 'clojure-mode-hook
+          (lambda ()
+            (set-fill-column 72)))
 
 ;; cider
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
@@ -62,6 +69,8 @@
 
 (add-hook 'cider-repl-mode-hook 'subword-mode)
 (add-hook 'cider-repl-mode-hook 'paredit-mode)
+
+(add-hook 'cider-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
 ;; auto-complete
@@ -96,3 +105,7 @@
 ;; powerline
 (require 'powerline)
 (powerline-default-theme)
+
+;; fci
+(require 'fill-column-indicator)
+(add-hook 'prog-mode-hook 'fci-mode)

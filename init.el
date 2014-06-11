@@ -1,9 +1,10 @@
 (require 'package)
+
 (package-initialize)
-(add-to-list 'package-archives
-             '("marmalade" . "http://marmalade-repo.org/packages/"))
-(add-to-list 'package-archives
-             '("melpa" . "http://melpa.milkbox.net/packages/") t)
+
+(setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")
+                         ("melpa" . "http://melpa.milkbox.net/packages/")))
 
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -35,10 +36,17 @@
                       clj-refactor
                       powerline
                       org
-                      coffee-mode))
+                      coffee-mode
+                      jedi
+                      flycheck
+                      autopair
+                      fill-column-indicator))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
     (package-install p)))
 
+;(add-to-list 'load-path "~/.emacs.d/vendor/")
+
 (load "~/.emacs.d/user.el")
+
