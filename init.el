@@ -9,38 +9,39 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(starter-kit
-                      starter-kit-lisp
-                      starter-kit-bindings
-                      starter-kit-eshell
-                      starter-kit-ruby
-                      starter-kit-js
-                      starter-kit-eshell
+(defvar my-packages '(ac-nrepl
+                      ac-nrepl
+                      auto-complete
+                      auto-complete
+                      autopair
+                      cider
+                      clj-refactor
                       clojure-mode
                       clojure-test-mode
-                      cider
-                      auto-complete
-                      popup
-                      fuzzy
-                      ac-nrepl
-                      highlight
-                      smooth-scrolling
-                      markdown-mode
-                      yaml-mode
-                      rainbow-delimiters
-                      auto-complete
-                      ac-nrepl
-                      solarized-theme
-                      monokai-theme
-                      python-mode
-                      clj-refactor
-                      powerline
-                      org
                       coffee-mode
-                      jedi
+                      fill-column-indicator
                       flycheck
-                      autopair
-                      fill-column-indicator))
+                      fuzzy
+                      highlight
+                      highlight-symbol
+                      jedi
+                      markdown-mode
+                      monokai-theme
+                      org
+                      popup
+                      powerline
+                      python-mode
+                      rainbow-delimiters
+                      smooth-scrolling
+                      solarized-theme
+                      starter-kit
+                      starter-kit-bindings
+                      starter-kit-eshell
+                      starter-kit-eshell
+                      starter-kit-js
+                      starter-kit-lisp
+                      starter-kit-ruby
+                      yaml-mode))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -49,4 +50,3 @@
 ;(add-to-list 'load-path "~/.emacs.d/vendor/")
 
 (load "~/.emacs.d/user.el")
-

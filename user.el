@@ -61,6 +61,26 @@
           (lambda ()
             (set-fill-column 72)))
 
+(defun cider-eval-expression-at-point-in-repl ()
+  (interactive)
+  (let ((form (cider-defun-at-point)))
+    ;; Strip excess whitespace
+    (while (string-match "\\`\s+\\|\n+\\'" form)
+      (setq form (replace-match "" t t form)))
+    (set-buffer (cider-find-or-create-repl-buffer))
+    (goto-char (point-max))
+    (insert form)
+    (cider-repl-return)))
+
+(eval-after-load "cider"
+  '(define-key cider-mode-map (kbd "C-`") 'cider-eval-expression-at-point-in-repl))
+
+
+;; clj-refactor
+(require 'clj-refactor)
+(add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
+(cljr-add-keybindings-with-prefix "C-c C-m")
+
 ;; cider
 (add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
@@ -109,3 +129,10 @@
 ;; fci
 (require 'fill-column-indicator)
 (add-hook 'prog-mode-hook 'fci-mode)
+
+;; highlight-symbol
+(require 'highlight-symbol)
+(global-set-key [(control f3)] 'highlight-symbol-at-point)
+(global-set-key [f3] 'highlight-symbol-next)
+(global-set-key [(shift f3)] 'highlight-symbol-prev)
+(global-set-key [(meta f3)] 'highlight-symbol-query-replace)
