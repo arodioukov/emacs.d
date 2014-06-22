@@ -19,7 +19,7 @@
   (push "/usr/local/bin/git" exec-path)
   (push "/usr/local/bin" exec-path))
 
-;; look & feel
+;; look & feel (the rest is in theme.el)
 (require 'smooth-scrolling)
 (setq mouse-wheel-scroll-amount '(3 ((shift) . 3) ((control) . nil)))
 (setq mouse-wheel-progressive-speed nil)
@@ -29,19 +29,6 @@
 ;; please stfu
 (setq initial-scratch-message nil)
 (setq ring-bell-function 'ignore)
-
-(set-face-attribute 'default nil :family "Inconsolata" :height 160)
-;(setq initial-frame-alist '((top . 3) (left . 3) (width . 200) (height . 61)))
-
-;(require 'color-theme-sanityinc-tomorrow)
-;(load-theme 'sanityinc-tomorrow-night t)
-
-(load-theme 'monokai t)
-;(load-theme 'solarized-dark t)
-;; make the fringe stand out from the background
-;(setq solarized-distinct-fringe-background t)
-;; make the modeline high contrast
-;(setq solarized-high-contrast-mode-line t)
 
 ;; tabs are 2 spaces
 (setq-default tab-width 2)
@@ -60,6 +47,9 @@
 (add-hook 'clojure-mode-hook
           (lambda ()
             (set-fill-column 72)))
+
+(require 'clojure-mode-extra-font-locking)
+
 
 (defun cider-eval-expression-at-point-in-repl ()
   (interactive)

@@ -10,14 +10,12 @@
   (package-refresh-contents))
 
 (defvar my-packages '(ac-nrepl
-                      ac-nrepl
-                      auto-complete
                       auto-complete
                       autopair
                       cider
                       clj-refactor
                       clojure-mode
-                      clojure-test-mode
+                      clojure-mode-extra-font-locking
                       coffee-mode
                       fill-column-indicator
                       flycheck
@@ -37,7 +35,6 @@
                       starter-kit
                       starter-kit-bindings
                       starter-kit-eshell
-                      starter-kit-eshell
                       starter-kit-js
                       starter-kit-lisp
                       starter-kit-ruby
@@ -49,4 +46,5 @@
 
 ;(add-to-list 'load-path "~/.emacs.d/vendor/")
 
+(load "~/.emacs.d/theme.el")
 (load "~/.emacs.d/user.el")
