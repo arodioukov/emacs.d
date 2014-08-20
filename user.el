@@ -2,9 +2,6 @@
 ;; user customizations go here
 ;;
 
-(custom-set-variables
- '(org-export-backends (quote (ascii html icalendar md))))
-
 ;; fix the PATH variable
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
@@ -34,7 +31,15 @@
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 
+;; smartparens
+(require 'smartparens-config)
+
+;; company
+(add-hook 'after-init-hook 'global-company-mode)
+
+;;
 ;; python
+;;
 (add-hook 'python-mode-hook
           (function (lambda ()
                       (setq tab-width 4)
@@ -42,14 +47,26 @@
 (add-hook 'python-mode-hook 'auto-complete-mode)
 (add-hook 'python-mode-hook 'jedi:ac-setup)
 
+;;
 ;; clojure
+;;
 (add-to-list 'auto-mode-alist '("\\.edn$" . clojure-mode))
-(add-hook 'clojure-mode-hook
-          (lambda ()
-            (set-fill-column 72)))
 
-(require 'clojure-mode-extra-font-locking)
+;; cider
+(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
 
+(setq cider-prefer-local-resources t)
+(setq cider-repl-use-clojure-font-lock t)
+(setq cider-repl-wrap-history t)
+(setq nrepl-buffer-name-show-port t)
+
+(add-hook 'cider-repl-mode-hook 'subword-mode)
+
+(add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
+
+(add-hook 'cider-mode-hook 'rainbow-delimiters-mode)
+
+(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
 (defun cider-eval-expression-at-point-in-repl ()
   (interactive)
@@ -63,54 +80,18 @@
     (cider-repl-return)))
 
 (eval-after-load "cider"
-  '(define-key cider-mode-map (kbd "C-`") 'cider-eval-expression-at-point-in-repl))
-
+  '(define-key cider-mode-map (kbd "C-`")
+     'cider-eval-expression-at-point-in-repl))
 
 ;; clj-refactor
 (require 'clj-refactor)
 (add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
 (cljr-add-keybindings-with-prefix "C-c C-m")
 
-;; cider
-(add-hook 'cider-mode-hook 'cider-turn-on-eldoc-mode)
-
-(setq nrepl-popup-stacktraces nil)
-(setq nrepl-popup-stacktraces-in-repl t)
-
-(add-hook 'cider-repl-mode-hook 'subword-mode)
-(add-hook 'cider-repl-mode-hook 'paredit-mode)
-
-(add-hook 'cider-mode-hook 'rainbow-delimiters-mode)
-(add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
-
-;; auto-complete
-(require 'auto-complete-config)
-(ac-config-default)
-
-;; ac-nrepl
-(require 'ac-nrepl)
-(add-hook 'cider-repl-mode-hook 'ac-nrepl-setup)
-(add-hook 'cider-mode-hook 'ac-nrepl-setup)
-
-(eval-after-load "auto-complete"
-  '(add-to-list 'ac-modes 'cider-repl-mode))
-
-(eval-after-load "cider"
-  '(define-key cider-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
-
-(eval-after-load "cider"
-  '(define-key cider-repl-mode-map (kbd "C-c C-d") 'ac-nrepl-popup-doc))
-
 ;; linum+
-;(global-linum-mode 1)
 (setq linum-eager nil)
 (global-set-key (kbd "<f6>") 'linum-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
-
-;; clj-refactor
-(require 'clj-refactor)
-(add-hook 'clojure-mode-hook (lambda () (clj-refactor-mode 1)))
-(cljr-add-keybindings-with-prefix "C-c C-m")
 
 ;; powerline
 (require 'powerline)
@@ -118,7 +99,7 @@
 
 ;; fci
 (require 'fill-column-indicator)
-(add-hook 'prog-mode-hook 'fci-mode)
+(global-set-key (kbd "<f7>") 'fci-mode)
 
 ;; highlight-symbol
 (require 'highlight-symbol)
@@ -126,3 +107,14 @@
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
+
+;; falcon's awesomeness
+(defun insert-lisp-comment-header (&optional title)
+  (interactive)
+  (insert ";; ---------------------------------------------------------------------\n")
+  (insert ";;")
+  (when (stringp title)
+    (insert " ")
+    (insert title)))
+
+(global-set-key [(control \")] 'insert-lisp-comment-header)

@@ -2,10 +2,7 @@
 ;; font and theme
 ;;
 
-(set-face-attribute 'default nil :family "Inconsolata" :height 160)
-
-(require 'color-theme-sanityinc-tomorrow)
-(load-theme 'sanityinc-tomorrow-night t)
+(set-face-attribute 'default nil :family "Inconsolata" :height 165)
 
 ;(load-theme 'monokai t)
 
@@ -14,3 +11,7 @@
 ;(setq solarized-distinct-fringe-background t)
 ;; make the modeline high contrast
 ;(setq solarized-high-contrast-mode-line t)
+
+;;(load-theme 'wombat t)
+
+(load-theme 'sanityinc-tomorrow-night)
