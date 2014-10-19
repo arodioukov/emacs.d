@@ -13,13 +13,13 @@
                       clj-refactor
                       clojure-mode
                       clojure-mode-extra-font-locking
-                      coffee-mode
                       company
                       fill-column-indicator
                       highlight-symbol
                       jedi
                       kibit-mode
                       markdown-mode
+                      nav
                       org
                       popup
                       powerline

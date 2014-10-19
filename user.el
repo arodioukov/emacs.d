@@ -86,13 +86,11 @@
 (cljr-add-keybindings-with-prefix "C-c C-m")
 
 ;; linum+
+(custom-set-variables '(linum-format 'dynamic))
+
 (setq linum-eager nil)
 (global-set-key (kbd "<f6>") 'linum-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
-
-;; powerline
-(require 'powerline)
-(powerline-default-theme)
 
 ;; fci
 (require 'fill-column-indicator)
