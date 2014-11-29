@@ -9,3 +9,7 @@ url/
 /tramp
 request/
 .*
+*~
+*#*#*
+ido.last
+recentf
