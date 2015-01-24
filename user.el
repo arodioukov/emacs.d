@@ -31,8 +31,6 @@
 (setq-default tab-width 2)
 (setq-default indent-tabs-mode nil)
 
-;; smartparens
-(require 'smartparens-config)
 
 ;; company
 (add-hook 'after-init-hook 'global-company-mode)
@@ -102,14 +100,3 @@
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
-
-;; falcon's awesomeness
-(defun insert-lisp-comment-header (&optional title)
-  (interactive)
-  (insert ";; ---------------------------------------------------------------------\n")
-  (insert ";;")
-  (when (stringp title)
-    (insert " ")
-    (insert title)))
-
-(global-set-key [(control \")] 'insert-lisp-comment-header)

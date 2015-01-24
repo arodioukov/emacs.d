@@ -9,7 +9,8 @@
 (when (not package-archive-contents)
   (package-refresh-contents))
 
-(defvar my-packages '(cider
+(defvar my-packages '(ag
+                      cider
                       clj-refactor
                       clojure-mode
                       clojure-mode-extra-font-locking
@@ -20,18 +21,15 @@
                       markdown-mode
                       nav
                       org
-                      powerline
                       python-mode
                       rainbow-delimiters
-                      smartparens
                       smooth-scrolling
+		      solarized-theme
                       slamhound
                       starter-kit
                       starter-kit-bindings
                       starter-kit-eshell
-                      starter-kit-js
                       starter-kit-lisp
-                      starter-kit-ruby
                       yaml-mode))
 
 (dolist (p my-packages)
@@ -42,3 +40,4 @@
 
 (load "~/.emacs.d/theme.el")
 (load "~/.emacs.d/user.el")
+
