@@ -17,6 +17,7 @@
                       company
                       fill-column-indicator
                       highlight-symbol
+                      jedi
                       kibit-mode
                       markdown-mode
                       nav
@@ -24,7 +25,7 @@
                       python-mode
                       rainbow-delimiters
                       smooth-scrolling
-		      solarized-theme
+                      solarized-theme
                       slamhound
                       starter-kit
                       starter-kit-bindings

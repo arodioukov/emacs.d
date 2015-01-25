@@ -42,8 +42,7 @@
           (function (lambda ()
                       (setq tab-width 4)
                       ())))
-(add-hook 'python-mode-hook 'auto-complete-mode)
-(add-hook 'python-mode-hook 'jedi:ac-setup)
+(add-hook 'python-mode-hook 'jedi:setup)
 
 ;;
 ;; clojure
