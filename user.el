@@ -58,7 +58,6 @@
 (setq nrepl-buffer-name-show-port t)
 
 (add-hook 'cider-repl-mode-hook 'subword-mode)
-(add-hook 'cider-repl-mode-hook 'smartparens-strict-mode)
 (add-hook 'cider-mode-hook 'rainbow-delimiters-mode)
 (add-hook 'cider-repl-mode-hook 'rainbow-delimiters-mode)
 
@@ -88,6 +87,7 @@
 (setq linum-eager nil)
 (global-set-key (kbd "<f6>") 'linum-mode)
 (add-hook 'prog-mode-hook 'linum-mode)
+(add-hook 'yaml-mode-hook 'linum-mode)
 
 ;; fci
 (require 'fill-column-indicator)

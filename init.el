@@ -3,8 +3,8 @@
 (package-initialize)
 
 (setq package-archives '(("gnu" . "http://elpa.gnu.org/packages/")
-                         ("marmalade" . "http://marmalade-repo.org/packages/")
-                         ("melpa" . "http://melpa.milkbox.net/packages/")))
+                         ("melpa" . "http://melpa.milkbox.net/packages/")
+                         ("marmalade" . "http://marmalade-repo.org/packages/")))
 
 (when (not package-archive-contents)
   (package-refresh-contents))
@@ -25,13 +25,13 @@
                       python-mode
                       rainbow-delimiters
                       smooth-scrolling
-                      solarized-theme
                       slamhound
                       starter-kit
                       starter-kit-bindings
                       starter-kit-eshell
                       starter-kit-lisp
-                      yaml-mode))
+                      yaml-mode
+                      zenburn-theme))
 
 (dolist (p my-packages)
   (when (not (package-installed-p p))
@@ -41,4 +41,3 @@
 
 (load "~/.emacs.d/theme.el")
 (load "~/.emacs.d/user.el")
-
