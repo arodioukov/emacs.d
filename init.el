@@ -15,11 +15,14 @@
                       clojure-mode
                       clojure-mode-extra-font-locking
                       company
+                      dockerfile-mode
                       fill-column-indicator
                       highlight-symbol
+                      ido-vertical-mode
                       jedi
                       kibit-mode
                       markdown-mode
+                      monokai-theme
                       nav
                       org
                       python-mode

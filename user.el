@@ -2,6 +2,8 @@
 ;; user customizations go here
 ;;
 
+(remove-hook 'prog-mode-hook 'esk-turn-on-hl-line-mode)
+
 ;; fix the PATH variable
 (defun set-exec-path-from-shell-PATH ()
   (let ((path-from-shell (shell-command-to-string "$SHELL -i -c 'echo $PATH'")))
@@ -99,3 +101,13 @@
 (global-set-key [f3] 'highlight-symbol-next)
 (global-set-key [(shift f3)] 'highlight-symbol-prev)
 (global-set-key [(meta f3)] 'highlight-symbol-query-replace)
+
+;; magit
+(setq magit-last-seen-setup-instructions "1.4.0")
+
+;; git-gutter+
+(global-git-gutter+-mode t)
+
+;; ido-vertical-mode
+(require 'ido-vertical-mode)
+(ido-vertical-mode 1)
